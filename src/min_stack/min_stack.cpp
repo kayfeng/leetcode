@@ -1,16 +1,19 @@
 //min stack
 #include <iostream>
 #include <cstdlib>
+#include <stack>
 using namespace std;
-class MinStack {
+/*class MinStack {
 private:
-    int stack[100];
-    int minStack[100];
+    vector<int> stack;
+    vector<int> minStack;
     int index;
     int mindex;
 public:
     MinStack()
     {
+        vector<int> stack(100,0);
+        vector<int> minStack(100,0);
         for(int i=0;i<10;i++)
         {
                 stack[i]=0;
@@ -49,6 +52,32 @@ public:
     int getMin() {
         return minStack[mindex-1];
     }
+};*/
+class MinStack {
+    stack<int> s;
+    stack<int> ms;
+public:
+    void push(int x) {
+        s.push(x);
+        if(ms.empty() || x<=ms.top()) 
+            ms.push(x);
+    }
+
+    void pop() {
+        if(s.empty()) return;
+        if(s.top()==ms.top()) ms.pop();
+        s.pop();
+    }
+
+    int top() {
+        if(!s.empty())
+        return s.top();
+    }
+
+    int getMin() {
+        if(!ms.empty())
+        return ms.top();
+    }
 };
 int main(){
     
@@ -59,10 +88,10 @@ int main(){
     cout<<ms1.top()<<endl;
     ms1.pop();
     cout<<ms1.top()<<endl;
-    ms1.push(7);
-    //cout<<ms1.top()<<endl;
-    ms1.push(3);
-    //ms1.pop();
+    ms1.push(-1);
+    cout<<ms1.top()<<endl;
+    ms1.push(-8);
+    ms1.pop();
     cout<<ms1.top()<<endl;
     cout<<ms1.getMin();
     system("pause");
