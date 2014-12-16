@@ -26,13 +26,9 @@ public:
         }
 };
 int main(){
-    vector<int> r;
+    vector<int> r(5,1);
     Solution s1;
-    r=s1.getRow(1);
-      
-    /*for (vector<int>::iterator it = r.begin() ; it != r.end(); ++it){
-    cout << ' ' << *it;
-    cout << '\n';}*/
+    r=s1.getRow(3);
     for (vector<int>::size_type u = 0; u < r.size(); u++)
     cout<<r[u]<<" ";
     system("pause");
